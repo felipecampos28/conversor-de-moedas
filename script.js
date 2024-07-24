@@ -7,36 +7,22 @@ function convertValues() {
     const currencyValueToConvert = document.querySelector(".currency-value-to-convert")  // Valor em Real
     const currencyValueConverted = document.querySelector(".currency-value")  // Valor em outras moedas
 
-    console.log(currencySelect.value)
     const dolarToday = 5.2
     const euroToday = 6.2
 
 
 
-    if (currencySelect == dolar) {
+    if (currencySelect.value == "dolar") {
         currencyValueConverted.innerHTML = new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "USD"
         }).format(inputCurrencyValue / dolarToday)
     }
-    if (currencySelect == euro) {
+    if (currencySelect.value == "euro") {
         currencyValueConverted.innerHTML = new Intl.NumberFormat("de-DE", {
             style: "currency",
             currency: "EUR"
         }).format(inputCurrencyValue / euroToday)
-    }
-    if (currencySelect == libra) {
-        currencyValueConverted.innerHTML = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD"
-        }).format(inputCurrencyValue / dolarToday)
-    }
-    if (currencySelect == bitcoin) {
-
-        CurrencyValueConverted.innerHTML = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD"
-        }).format(inputCurrencyValue / dolarToday)
     }
 
 
@@ -48,15 +34,22 @@ function convertValues() {
 
 
 
-
-
-
-
-    console.log(convertedValue)
 }
 
-convertButton.addEventListener("click", convertValues)
+function changeCurrency() {
+    const currencyName = document.querySelector("#currency-name")
+    const currencyImage = document.querySelector(".currency-img")
+    if (currencySelect.value == "dolar") {
+        currencyName.innerHTML = "Dólar Americano"
+        currencyImage.src = './assets/dolar.png'
+    }
+    if (currencySelect.value == "euro") {
+        currencyName.innerHTML = "Euro"
+        currencyImage.src = './assets/euro.png'
+    }
 
+    convertValues()
+}
 
-
-
+    currencySelect.addEventListener("change", changeCurrency)
+    convertButton.addEventListener("click", convertValues)
